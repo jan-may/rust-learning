@@ -1,7 +1,10 @@
 [package]
-name = "art"
+name = "jm_art"
 version = "0.1.0"
 edition = "2021"
+description = "A simple art generator"
+authors = ["Jan May"]
+license = "MIT OR Apache-2.0"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
