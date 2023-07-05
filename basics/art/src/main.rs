@@ -1,5 +1,5 @@
-use art::mix;
-use art::PrimaryColor;
+use jm_art::mix;
+use jm_art::PrimaryColor;
 
 fn main() {
     let red = PrimaryColor::Red;
