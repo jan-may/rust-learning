@@ -1,6 +1,7 @@
 use crate::List::{Cons, Nil};
 use std::cell::RefCell;
 use std::rc::Rc;
+use std::rc::Weak;
 
 #[derive(Debug)]
 enum List {
@@ -55,6 +56,8 @@ fn main() {
         parent: RefCell::new(Weak::new()),
         children: RefCell::new(vec![]),
     });
+
+    // branch has a strong_count of 1 and a weak_count of 0
 
     let branch = Rc::new(Node {
         value: 5,
