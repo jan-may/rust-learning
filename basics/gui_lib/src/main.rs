@@ -1,4 +1,4 @@
-use gui::{Button, Draw, Screen};
+use gui_lib::{Button, Draw, Screen};
 
 struct SelectBox {
     width: u32,
