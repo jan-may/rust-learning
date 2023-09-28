@@ -6,14 +6,14 @@ fn main() {
     // Parse the raw JSON
     let result = parser::untyped_example();
     match result {
-        Ok(result) => (),
+        Ok(_result) => (),
         Err(error) => print!("{}", error),
     }
 
     // Grab JSON file from FS
     let result_from_file = parser::untyped_example_with_file();
     match result_from_file {
-        Ok(result) => (),
+        Ok(_result) => (),
         Err(error) => print!("{}", error),
     }
 
