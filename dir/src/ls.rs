@@ -1,5 +1,10 @@
+use crate::utils::{
+    format_file_size, format_system_time, get_dir_size, get_file_size, get_file_type,
+};
+use std::fs;
+use std::fs::DirEntry;
+use std::io;
 use std::path::Path;
-use crate::utils::{format_file_size, format_system_time};
 
 fn print_wd(dir: &Path) {
     println!();
@@ -34,10 +39,20 @@ fn print_table_row(
     );
 }
 
-pub fn dir() {
+pub fn ls(args: &Vec<String>) {
     let dir = std::env::current_dir().unwrap();
     print_wd(&dir);
     print_table_headers();
+    let parent = dir.parent().unwrap();
+    if parent.exists() {
+        print_table_row(
+            "".to_string(),
+            "<DIR>",
+            "".to_string().as_str(),
+            "".to_string().as_str(),
+            "..",
+        );
+    }
     let mut entries = std::fs::read_dir(dir).unwrap();
     // iterate over entries
     while let Some(entry) = entries.next() {
@@ -45,15 +60,8 @@ pub fn dir() {
         let path = entry.path();
         let file_name = path.file_name().unwrap().to_str().unwrap();
         let metadata = std::fs::metadata(&path).unwrap();
-        let file_size = metadata.len();
-        let file_type = if metadata.file_type().is_dir() {
-            "<DIR>"
-        } else {
-            path.extension()
-                .unwrap_or_default()
-                .to_str()
-                .unwrap_or_default()
-        };
+        let file_size = get_file_size(&metadata, &path, &args);
+        let file_type = get_file_type(&metadata, &path);
         let created = metadata.created().unwrap();
         let changed = metadata.modified().unwrap();
         let formatted_creation_time = format_system_time(created);
