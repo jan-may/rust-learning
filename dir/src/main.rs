@@ -3,7 +3,7 @@ mod mkdir;
 mod utils;
 use crate::ls::ls;
 use crate::mkdir::mkdir;
-use utils::{print_command_description};
+use utils::print_command_description;
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
@@ -12,9 +12,7 @@ fn main() {
         eprintln!("Missing command! Available commands:");
         println!();
         print_command_description("ls", "Lists directory contents");
-        print_command_description(
-            "mkdir", "Creates a new directory at the current location",
-        );
+        print_command_description("mkdir", "Creates a new directory at the current location");
         println!();
         return;
     }
