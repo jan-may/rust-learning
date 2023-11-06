@@ -1,4 +1,3 @@
 mod iterators;
 
-fn main() {
-}
+fn main() {}
